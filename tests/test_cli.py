@@ -3,6 +3,7 @@
 from pathlib import Path
 
 from domain_agent.cli import main
+from domain_agent.cli import build_parser
 
 
 def test_cli_reads_the_requested_company_description(
@@ -47,3 +48,20 @@ def test_cli_verbose_mode_shows_safe_local_pipeline_stages(
     assert exit_code == 0
     assert "[input_reader] Reading and validating" in captured.out
     assert "[report_writer] Writing the placeholder report" in captured.out
+
+
+def test_cli_accepts_an_explicit_openai_model_and_reasoning_level() -> None:
+    """The command-line options retain an intentional model choice."""
+    options = build_parser().parse_args(
+        [
+            "--input",
+            "company.txt",
+            "--openai-model",
+            "gpt-6-astra",
+            "--reasoning-effort",
+            "medium",
+        ]
+    )
+
+    assert options.openai_model == "gpt-6-astra"
+    assert options.reasoning_effort == "medium"

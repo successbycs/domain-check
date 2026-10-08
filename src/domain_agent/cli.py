@@ -100,6 +100,12 @@ def main(arguments: Sequence[str] | None = None) -> int:
             options.verbose,
             "[candidate_generator] Calling OpenAI to generate ten candidates.",
         )
+        _announce(
+            options.verbose,
+            "[candidate_generator] "
+            f"Model: {options.openai_model}; "
+            f"reasoning effort: {options.reasoning_effort or 'not set'}.",
+        )
         generation_run = generate_candidates(
             company_input=company_input,
             client=OpenAI(),
