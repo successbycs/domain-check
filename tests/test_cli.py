@@ -24,3 +24,26 @@ def test_cli_reads_the_requested_company_description(
     assert str(description_file) in captured.out
     assert f"Wrote placeholder report to {report_path}" in captured.out
     assert report_path.exists()
+
+
+def test_cli_verbose_mode_shows_safe_local_pipeline_stages(
+    tmp_path: Path, capsys: object
+) -> None:
+    """Verbose mode explains module calls without making external requests."""
+    description_file = tmp_path / "company.txt"
+    description_file.write_text("A New Zealand coffee roaster.")
+
+    exit_code = main(
+        [
+            "--input",
+            str(description_file),
+            "--output",
+            str(tmp_path / "report.md"),
+            "--verbose",
+        ]
+    )
+
+    captured = capsys.readouterr()
+    assert exit_code == 0
+    assert "[input_reader] Reading and validating" in captured.out
+    assert "[report_writer] Writing the placeholder report" in captured.out

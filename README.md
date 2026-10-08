@@ -20,18 +20,41 @@ pip install -r requirements.txt
 Run the test suite with:
 
 ```bash
-pytest
+PYTHONPATH=src .venv/bin/python -m pytest
 ```
 
-Try the current command-line input check with the included fictional example:
+Run the complete workflow with safe progress messages:
 
 ```bash
-PYTHONPATH=src python3 -m domain_agent.cli --input examples/company_description.txt
+PYTHONPATH=src .venv/bin/python -m domain_agent.cli \
+  --input examples/knocknoc_company_description.txt \
+  --generate \
+  --verbose
 ```
 
-This repository starts with structure only. Subsequent small steps will add
-OpenAI API calls, domain lookups, and the agent workflow, each with a runnable
-way to verify it.
+This makes two OpenAI calls and one read-only Cloudflare lookup. It writes a
+timestamped folder under `output/` containing the API evidence and final JSON,
+CSV, and Markdown reports.
+
+## Debugging in VS Code
+
+Open the repository folder in VS Code, open **Run and Debug**, choose a launch
+choice, and press **F5**.
+
+- **Domain Agent: placeholder (free)** runs only the local input-to-placeholder
+  report path.
+- **Domain Agent: full workflow (paid)** runs OpenAI generation, Cloudflare
+  lookup, scoring, and the model evaluation.
+
+To pause the program, click in the left margin beside a line number to set a
+breakpoint. Good first breakpoints are:
+
+- `src/domain_agent/cli.py` on `generation_run = generate_candidates(...)`;
+- `src/domain_agent/cloudflare_lookup.py` on `response = self.session.post(...)`;
+- `src/domain_agent/scorer.py` on the `return ScoreBreakdown(...)` line.
+
+When execution pauses, use **Step Over** to run the next line, **Step Into** to
+enter the called function, and the **Variables** panel to inspect current data.
 
 ## Proof-of-concept goal
 
@@ -41,9 +64,9 @@ The first usable version has one clear path:
 company description text file → Python command → research report
 ```
 
-The report will contain ranked domain candidates, supporting evidence,
-timestamps, caveats, and items requiring human review. It will also be checked
-by a repeatable evaluation function.
+The report contains ranked domain candidates, supporting evidence, timestamps,
+caveats, items requiring human review, a rule-based evaluation, and a separate
+model evaluation.
 
 Deployment as a website backend is a future possibility, not part of the PoC.
 

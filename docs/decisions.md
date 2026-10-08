@@ -75,6 +75,13 @@ Version 1 awards +1 when a name is easy to say, 0 when it is unclear, and -1
 when it is hard to say. The assessment comes from the LLM and is marked as a
 judgment with uncertainty.
 
+## 2026-10-08 — Score possible associations without invented severity
+
+Version 1 gives a candidate +1 when no possible associations were flagged and
+-1 when one or more concerns were flagged. The current input schema has no
+severity field, so it cannot honestly apply a more serious -2 penalty. A later
+version can add that field and decision criteria if evidence shows it is useful.
+
 ## 2026-10-08 — Keep available names when price is unknown
 
 If Cloudflare reports a domain as available but does not provide a price, it

@@ -1,0 +1,17 @@
+Test Company 2 — Knocknoc (public website summary)
+
+Knocknoc is an Australian cybersecurity company focused on reducing the attack
+surface of networked systems. It describes a product that uses network
+allowlisting and identity-based access controls to keep services, ports, and
+infrastructure inaccessible until an authorised user signs in.
+
+It is aimed at organisations protecting remote-access services, internal
+networks, cloud assets, legacy applications, and systems used by contractors or
+third parties. Knocknoc says it can work with existing firewalls, network
+security groups, web application firewalls, identity platforms, and
+multi-factor authentication. It can be deployed on-premises, in a customer's
+cloud environment, or as a managed cloud service.
+
+Source: https://knocknoc.io/ (public homepage, accessed 2026-10-08). This is a
+test input based on the company's own description, not independently verified
+claims.

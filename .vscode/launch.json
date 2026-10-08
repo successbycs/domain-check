@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Domain Agent: placeholder (free)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "domain_agent.cli",
+      "cwd": "${workspaceFolder}",
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "args": [
+        "--input",
+        "examples/company_description.txt",
+        "--verbose"
+      ]
+    },
+    {
+      "name": "Domain Agent: full workflow (paid)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "domain_agent.cli",
+      "cwd": "${workspaceFolder}",
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src"
+      },
+      "args": [
+        "--input",
+        "examples/knocknoc_company_description.txt",
+        "--generate",
+        "--verbose"
+      ]
+    }
+  ]
+}
