@@ -1,0 +1,86 @@
+For this PoC, I’d work through a short sequence of human decisions and small technical proofs:
+Define problem → define trustworthy output → design evidence → build happy path
+→ add external checks → evaluate → review failures → iterate
+1. Frame the decision we are helping a human make
+   Human thinking: What does a “good” domain recommendation mean for this specific user? What must the tool never imply with certainty?
+   For us: generate promising names and research them—not decide trademark safety, linguistic appropriateness, or true registration availability conclusively.
+
+
+   CS: 1. A good domain recommendation is one that is avilable to buy (we will assume its for New Zealand only)  that is easy to pronounce, does not mean something inappropriate or sensitive in a foreigh language does not impinge on Maori culture or imply Maori cultural affiliation.  Is a name that can spread by word of mouth.  Does not impede on trademarks.
+
+   Need a simple and free API to determine if the domain names supplied by the LLM can be purchased (if possible).  This function will be supplied via a tool.  The tool will be an encapsulated API that will be deployed on a local version of FastAPI. The Domain Name Free API will take the domain names that the LLM supplies in a CSV and then run through each domain and check if that domain can be purchased.  If there is pricing information then the API can return a Yes - can be purhase AND $xxxx.xx to buy.  Note that if there is an API already built that is free to use, we will use that instead rather than build from scratch - investogation is needed.
+
+
+
+2. Define the input and output before building the agent
+
+   Human thinking: What is the smallest input that provides enough context, and what output would actually be useful?
+
+   For us:
+   - Input: a company-description text file.
+   - Output: a structured report containing ten candidates, rationale, checks performed, evidence, timestamps, caveats, rank, and human-review flags, available to buy(if possible) and price(if possible)
+
+CS: we need to agree what does each of these checks.  Is there an API service we can use to perform a review if the domain name is easy to pronounce or will the LLM be able to infer this or do we need to build an API.
+
+Will the LLM be able to know if the domain name is sensitive, rude or inappropriate across major GLobal languages or is there a free API we can use to get this information back or do we need to build an API.
+
+Ranking the result, do we need a kubric that scores each domain name to guve the priority, is this deterministic i.e. in python or is it inferred by the LLM.
+
+
+
+3. Make the judgment rubric explicit
+   Human thinking: How should we trade off relevance, clarity, length, pronunciation, awkward associations, and availability? Which are subjective?
+
+CS: One point for each at this stage.  Avilable = 1 point, Calrity = Good (1 point), Poor(-1 point), Excellent (2 points), Akward associations, None (1 point), Bad (-1 points) Really bad (-2 points).
+
+
+   Write this down before prompting a model. A transparent provisional scoring rubric is better than an impressive but opaque “best domain” claim.
+4. Design the evidence model
+
+   Human thinking: What would a human need to see to trust—or challenge—each claim?
+   Every finding should preserve:
+   - value/result;
+   - source or tool;
+   - timestamp;
+   - confidence or uncertainty;
+   - errors or missing information.
+
+CS: the output would show the rubric results, it would also show the LLM model confidence score which is represented as a priority list, even if Domain 1 has the most points the LLM can put Domain 2 at the top of the list but must add a clear reason that would speak to some marketing reasin why that name resonates.
+
+
+5. Build the narrow happy path end-to-end
+   Technical step: read one example description, make one OpenAI request, parse ten candidates into structured data, and write a report. No complex orchestration yet.
+   This proves the central hypothesis: can model-generated candidates become a report a person finds useful?
+
+CS: yes please, just a simple prompt that we write together, that gets sent to the LLM (lets choose the cheapest openai model)  and we see what gets returned back in a ranked order based upon the LLM's judgement.
+
+
+6. Add one external lookup at a time
+   Human thinking: Which lookup changes the recommendation enough to justify its cost, delay, and failure modes?
+   Technical step: add a provider adapter with timeouts, retries, raw result capture, and clear “unknown/error” outcomes. Domain availability should never silently become “unavailable” merely because a request failed.
+
+   CS: Yes, I like this one integration at a time.
+
+7. Add the evaluation function
+   Human thinking: What does quality look like independent of whether we personally like a result?
+   Start with deterministic checks: ten unique candidates, report completeness, valid evidence and timestamps, uncertainty language, traceable ranking, and human-review flags. Then use fixed sample company descriptions to compare runs over time.
+
+CS: The deterministic result is if we get a results, if the rubric is applied and we get a priority list.  Eval 1: We need an evaluation using another model call that ranks the response from 1-5 where 5 is good and 1 is bad (initially)
+Eval 2: You are a marketing and serial successful entrepreneur in this business space 'evaluate the outputs supplied and rank them from the information supplied and your perspective:
+
+
+
+8. Perform human review on representative outputs
+   Human thinking: Inspect examples across different industries, vague descriptions, unusual terms, and obvious bad names. Identify where the model is persuasive but wrong.
+   Turn each discovered failure into a test case, rubric rule, prompt improvement, or explicit caveat.
+
+CS: ok, but I dont know how to do this.  I assume an .md fle would be created and I can see if there are clearly some dumb results given that I can identify and steer the LLM / prompt for the LLM.
+
+
+9. Iterate only where evidence shows value
+   Add planning loops, multiple models, parallel lookups, databases, or a web backend only after the simple workflow exposes a concrete need. For a PoC, a reliable sequential Python workflow is sufficiently “agentic.”
+
+cs: I have provided an initial view of the minimum definition of done.  I want to explore more fully for my learning Agentic patterns that we could use that would give the tool a real bump is usefulness.  I want the code to execute but I dont know how we would deploy it so when a text file with the description of the company was provided to the system it would execute - we should work through these options for a simple local tool (initially) and a cloudfare hosted webiste in the future.
+
+
+The immediate next deliverable would be a one-page report schema and scoring rubric. That gives us a target for the OpenAI call, lookup tools, and evaluate_report() function before we write their implementations.

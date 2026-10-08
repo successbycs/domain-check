@@ -1,0 +1,25 @@
+# Python bytecode and tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Environment files: keep the safe template, never commit secrets
+.env
+.env.*
+!.env.example
+
+# Build artefacts
+build/
+dist/
+*.egg-info/
+
+# Generated research reports can contain private company descriptions
+output/
