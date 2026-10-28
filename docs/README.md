@@ -12,6 +12,8 @@ Start here when you need to find project information.
 | [communication-style.md](communication-style.md) | The plain-language, beginner-focused communication agreement. |
 | [development-workflow.md](development-workflow.md) | How we discuss, explain, test, and promote agreed decisions. |
 | [learning-log.md](learning-log.md) | Short notes on what we have learned while building. |
+| [procedures/update-docs.md](procedures/update-docs.md) | How to turn a session into a docs proposal, and apply it after approval. |
+| [proposals/](proposals/) | Docs changes waiting for Chris's approval. Each file is deleted once applied. |
 | [Feedback/](Feedback/) | Conversation and review records. These are useful history, not the final source of truth. |
 
 ## How we keep documentation current
@@ -20,3 +22,8 @@ Start here when you need to find project information.
 2. Confirm the decision.
 3. Add the agreed result to the relevant document above.
 4. Keep unfinished questions in `backlog.md`.
+
+At the end of a session, Chris can say "update the docs from this session".
+The agent follows [procedures/update-docs.md](procedures/update-docs.md):
+it writes a numbered proposal to `proposals/`, and the real docs change only
+after Chris approves.
