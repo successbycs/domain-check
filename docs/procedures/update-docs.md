@@ -7,6 +7,10 @@ and wait for approval.
 The repository docs are the source of truth. Nothing reaches them until Chris
 approves it.
 
+For a session that has already ended, `tools/session_docs` can draft the same
+proposal from the saved transcript. See
+[tools/session_docs/README.md](../../tools/session_docs/README.md).
+
 ## Step 1 — Gather what happened
 
 1. Read the current conversation from the start.
