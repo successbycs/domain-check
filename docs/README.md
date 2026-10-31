@@ -27,3 +27,5 @@ At the end of a session, Chris can say "update the docs from this session".
 The agent follows [procedures/update-docs.md](procedures/update-docs.md):
 it writes a numbered proposal to `proposals/`, and the real docs change only
 after Chris approves.
+
+[Agent architecture charter](architecture/agent-charter.md) guides future agentic work; it does not change the current PoC workflow.
