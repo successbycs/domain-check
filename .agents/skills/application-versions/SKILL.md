@@ -24,8 +24,8 @@ labelled, or assigned to a milestone does not mean its behaviour is built or liv
 | Say | Only when |
 | --- | --- |
 | **planned** | Scope is recorded but no work is authorised. |
-| **ready** | Chris has explicitly authorised the issue or applied the label. Do not add this label yourself. |
-| **in progress** | Authorised work has begun on the issue branch. |
+| **ready** | The repository's local delivery process says the work may begin. Read its AGENTS.md and issue before acting. |
+| **in progress** | Work has begun under the repository's local delivery process. |
 | **implemented** | The scoped code or documentation exists and its checks pass. |
 | **merged** | The pull request is merged to the default branch. |
 | **deployed** | The merged change is running in its intended environment. |
@@ -54,8 +54,8 @@ versioned design. Keep this shared skill generic.
 
 Lead with the version and its real state, then name the evidence:
 
-> Version 4 is active: comment-response work is merged and awaiting deployment
-> proof; three scoped issues remain. Version 4.5 analytics is deferred.
+> Version 2 is active: feedback work is merged and awaiting deployment
+> proof; two scoped issues remain. Version 2.1 analytics is deferred.
 
 For a completion claim, link the charter or acceptance record, the resolved
 issues, and the live proof where one is required. If that evidence is missing,
