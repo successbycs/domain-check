@@ -43,8 +43,8 @@ of them. State the strongest claim that the records prove.
 2. Reconcile the current version: finish an item, defer it, move it with a
    linked reason, or withdraw it. Do not silently leave it behind.
 3. Create the next version or milestone with a concise outcome and boundaries.
-4. Keep later-version issues and draft PRs **deferred** until Chris explicitly
-   starts that version. A draft PR, a future milestone, or a plan never starts
+4. Keep later-version issues and draft PRs **deferred** until the repository's
+   authority process explicitly starts that version. A draft PR, a future milestone, or a plan never starts
    implementation.
 
 Record a project's current version sequence in that project's own instructions or
