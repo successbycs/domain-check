@@ -47,9 +47,8 @@ of them. State the strongest claim that the records prove.
    starts that version. A draft PR, a future milestone, or a plan never starts
    implementation.
 
-For Shipright now, Version 4 is the active delivery sequence. Version 4.5 work,
-including analytics, remains deferred until Version 4 has been reconciled and
-Chris chooses to begin Version 4.5.
+Record a project's current version sequence in that project's own instructions or
+versioned design. Keep this shared skill generic.
 
 ## Report a version clearly
 
